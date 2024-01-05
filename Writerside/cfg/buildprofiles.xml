@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<buildprofiles xsi:noNamespaceSchemaLocation="https://helpserver.labs.jb.gg/help/schemas/mvp/build-profiles.xsd"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <variables>
+        <product-web-url>https://test.writerside.pages.jetbrains.team/</product-web-url>
+        <header-logo>../../web/writerside.svg</header-logo>
+        <images-prefix-override>/images/</images-prefix-override>
+        <analytics-head-script-file>resize-iframes.js</analytics-head-script-file>
+        <web-root>example</web-root>
+    </variables>
+    <build-profile instance="simple">
+        <variables>
+            <header-logo>logo_colored_ondark.svg</header-logo>
+            <custom-favicons>flickr-32.ico,x_twitter-64.ico,skype-72.ico,chinese-96.ico,tiktok-128.ico,snapchat-512.ico</custom-favicons>
+        </variables>
+    </build-profile>
+</buildprofiles>

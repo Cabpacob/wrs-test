@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE instance-profile
+        SYSTEM "https://helpserver.labs.jb.gg/help/schemas/mvp/product-profile.dtd">
+
+<instance-profile id="dataframe"
+                 name="Dataframe"
+                 start-page="Index_md.md">
+
+    <toc-element topic="Index_md.md"/>
+    <toc-element topic="Tables.md"/>
+    <toc-element topic="Scripts.md"/>
+</instance-profile>

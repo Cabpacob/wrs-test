@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE instance-profile
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
+
+<instance-profile id="china"
+                 name="China"
+                 start-page="china.md">
+
+    <toc-element topic="china.md"/>
+    <toc-element topic="源码解析（一）.md"/>
+    <toc-element topic="ImageLoader.md"/>
+    <toc-element topic="building.md"/>
+    <toc-element topic="backlog.md"/>
+    <toc-element topic="Rendering_loop.md"/>
+    <toc-element topic="developmentProcess.md"/>
+    <toc-element topic="CornerstoneElementDisabled-Event.md"/>
+    <toc-element topic="CornerstoneNewImage-Event.md"/>
+    <toc-element topic="image_object.md"/>
+    <toc-element topic="Pixel_Coordinate_System.md"/>
+    <toc-element topic="源码解析（二）.md"/>
+    <toc-element topic="roadmap.md"/>
+    <toc-element topic="README.md"/>
+    <toc-element topic="enabled-element.md"/>
+    <toc-element topic="ImageIds.md"/>
+    <toc-element topic="CornerstoneImageRendered-Event.md"/>
+    <toc-element topic="源码解析（三）.md"/>
+    <toc-element topic="Viewport.md"/>
+    <toc-element topic="CornerstoneImageLoadProgress-Event.md"/>
+    <toc-element topic="Architecture.md"/>
+    <toc-element topic="CornerstoneImageLoaded-Event.md"/>
+</instance-profile>
