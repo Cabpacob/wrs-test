@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildprofiles xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/build-profiles.xsd"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <variables>
+    </variables>
+
+    <build-profile instance="m">
+        <variables>
+            <algolia-id>46LMI80YZU</algolia-id>
+            <algolia-index>test_search</algolia-index>
+            <algolia-api-key>f4dea72f77650e4b46001ca6bdcf75bc</algolia-api-key>
+            <web-root>https://siarb.github.io</web-root>
+        </variables>
+    </build-profile>
+    <build-profile instance="t">
+        <variables>
+            <algolia-id>46LMI80YZU</algolia-id>
+            <algolia-index>test_search</algolia-index>
+            <algolia-api-key>f4dea72f77650e4b46001ca6bdcf75bc</algolia-api-key>
+            <web-root>https://siarb.github.io</web-root>
+        </variables>
+    </build-profile>
+</buildprofiles>
