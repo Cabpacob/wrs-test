@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE buildprofiles SYSTEM "https://resources.jetbrains.com/writerside/1.0/build-profiles.dtd">
+<buildprofiles xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/build-profiles.xsd"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="">
+
+    <variables>
+        <ignore-problems>MRK002,REF002,CTT004,SCT005</ignore-problems>
+        <enable-contribution>true</enable-contribution>
+        <contribute-url>https://github.com/siarb/siarb.github.io/edit/main/Writerside2</contribute-url>
+        <enable-browser-edits>true</enable-browser-edits>
+        <browser-edits-url>https://github.com/AAA</browser-edits-url>
+<!--        <enable-contribution>true</enable-contribution>-->
+<!--        <contribute-url></contribute-url>-->
+<!--        <contribution>https://github.com/JetBrains/kotlin-web-site/edit/master/docs/</contribution>-->
+        <content-max-width>1800</content-max-width>
+        <link-color>#000000</link-color>
+        <custom-css>custom_css.css</custom-css>
+<!--        <include-before-body>custom_js.js</include-before-body>-->
+        <include-after-body>disqus.html</include-after-body>
+        <header-logo>JB_Writerside_logo.png</header-logo>
+        <primary-color>deep-ocean</primary-color>
+        <property-cleanup>[:,.;]$|\.{3}$|[^a-zA-Z0-9}')]+$</property-cleanup>
+        <feedback-url>https://siarb.github.io/</feedback-url>
+        <feedback-widget>true</feedback-widget>
+    </variables>
+
+    <build-profile instance="auto">
+        <sitemap/>
+        <variables>
+            <generate-canonicals>true</generate-canonicals>
+            <enable-browser-edits>true</enable-browser-edits>
+            <browser-edits-url>https://github.com/BBB</browser-edits-url>
+<!--            <include-before-body>custom_js.js</include-before-body>-->
+<!--            <custom-favicons>dog.png</custom-favicons>-->
+            <web-root>https://siarb.github.io/site1/</web-root>
+            <header-logo>open.png</header-logo>
+            <product-web-url>https://siarb.github.io</product-web-url>
+            <color-preset>vivid</color-preset>
+<!--            <search-endpoint>https://127.0.0.1:8080</search-endpoint>-->
+            <algolia-id>ERUSDW4898</algolia-id>
+            <algolia-index>index_test</algolia-index>
+            <algolia-api-key>c8a4c35ccfcebbaa929dc7e6dba71a93</algolia-api-key>
+            <noindex-content>false</noindex-content>
+            <!--            <offline-docs>true</offline-docs>-->
+        </variables>
+
+        <footer>
+            <copyright>Writerside 2024</copyright>
+        </footer>
+    </build-profile>
+
+    <footer>
+        <social type="rss" href="https://example.com">Product RSS feed</social>
+        <social type="twitter" href="https://twitter.com/onwriterside"/>
+        <social type="blog" href="https://blog.jetbrains.com/smth"/>
+        <social type="youtube" href="https://www.youtube.com/@JetBrainsTV"/>
+        <social type="facebook" href="https://example.com">
+            Product on Facebook
+        </social>
+        <social type="linkedin" href="https://example.com">Product on Linkedin</social>
+        <social type="instagram" href="https://example.com">Product on Instagram</social>
+        <social type="weibo" href="https://example.com">Product on Weibo</social>
+        <social type="bilibili" href="https://example.com">Product on Bilibili</social>
+        <social type="email" href="siarhei@test.com"/>
+
+        <link href="https://test.com" title="Title" summary="Test" caps="upper">link</link>
+        <link href="https://test.com">
+            One more link
+        </link>
+        <link href="https://test.com">Nice link</link>
+        <link href="URL">Landing page</link>
+        <link href="URL">Slack community</link>
+
+        <copyright>Writerside 2023</copyright>
+
+        <icp>Hello, Writersiders!</icp>
+    </footer>
+
+    <property-bundles>
+        <property-file>./properties/propmap-dominators.xml</property-file>
+    </property-bundles>
+
+    <icons>
+        <shared-src>icons</shared-src>
+    </icons>
+
+    <shortcuts>
+        <src>keymap-f.xml</src>
+        <layout name="Windows" display-name="Windows"/>
+        <layout name="macOS" display-name="macOS"/>
+    </shortcuts>
+
+</buildprofiles>

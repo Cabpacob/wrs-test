@@ -1,0 +1,13 @@
+<pdf landscape="true">
+    <layout>macOS</layout>
+    <header>header</header>
+    <landscape>true</landscape>
+    <footer>footer</footer>
+    <toc-title>$GITHUB_WORKSPACE</toc-title>
+    <cover-page>
+        <description>Description</description>
+        <copyright>copyright</copyright>
+        <title>Title</title>
+        <logo>/__w/siarb.github.io/siarb.github.io/Writerside2/images/book.jpg</logo>
+    </cover-page>
+</pdf>

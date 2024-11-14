@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Writerside" id="Writerside">
+
+    <chapter title="Your First Zenoh Appplication" id="first-app">
+    <tabs>
+        <tab title="Python">
+            <code-block lang="python">
+                import zenoh
+                with zenoh::open() as z:
+                z.put("demo/greeting", "Hello from Zenoh!")
+            </code-block>
+        </tab>
+        <tab title="Rust">
+            <code-block lang="rust">
+                use zenoh::prelude::*;
+
+                #[tokio::main]
+                async fn main() {
+                let c = zenoh::config::Config::default();
+                let z = zenoh::open(c).await.unwrap();
+                z.put("demo/greeting", "Hello from Zenoh!");
+                }
+            </code-block>
+        </tab>
+        <tab title="C++">
+            <code-block lang="c++">
+                #include "zenoh.hxx"
+
+                int main() {
+                auto c = zenoh::Config::default();
+                auto z = zenoh::open(std::move(c));
+                z.put("demo/greeting", "Hello, Zenoh");
+                }
+            </code-block>
+        </tab>
+        <tab title="C"></tab>
+
+        <tab title="Kotlin"></tab>
+        <tab title="REST"></tab>
+    </tabs>
+    </chapter>
+
+    <img src="love%20couple%20dark.gif" alt="love couple dark.gif" ignore-vars="true"/>
+
+    <img src="animated.png" alt="Column selection" thumbnail="true"/>
+
+    <img src="duck_dark.gif" alt="Animated" thumbnail="true"/>
+
+    <web-file-name>test.html</web-file-name>
+
+    <p>
+        <control><property bundle="messages.SettingsSyncBundle" key="config.button.enable"/></control>.
+        The name of this <if instance="!db">class</if><if instance="db">file</if> will be a combination of the name that you
+        provide and <if instance="!db">the word</if> <code>%product%</code>,
+        for example: <code>%product%%template%</code>.
+    </p>
+
+    <p>Operands: <code>=</code>, <code>==</code>, <code>&gt;=</code>, <code>&lt;=</code>,
+        <code>&gt;</code>,
+        <code>&lt;</code>,
+        <code>&lt;&gt;</code>, <code>!=</code>, <code>+</code>, <code>-</code>, <code>/</code>, <code>*</code>,
+        <code>%</code>, <code>AND</code>, <code>OR</code>, <code>NOT</code>, <code>LIKE</code>, <code>NOT LIKE</code>,
+        <code>IS</code>,<code>IS NOT</code>, <code>IN</code>, <code>NOT IN</code>, <code>BETWEEN</code>, <code>NOT BETWEEN</code>.
+    </p>
+
+    <p>
+        On Windows, it either returns the value of the <code>%\TEMP%</code> environment variable
+        or falls back to <path>AppData\Local\Temp</path> under the user's home
+        directory<if instance="!rm"> (as returned by <code>System.getProperty("user.home")</code>)</if>.
+    </p>
+
+    <p>
+        <var instance="!ws" name="local_path_nested" value="Users/John.Smith/demo-project/nested-folder" />
+        <var instance="ws" name="local_path_nested" value="Users/barbara/WS/deployment_demo/nested_folder" />
+        <var instance="!ws" name="deployment_path_nested" value="/root-path/nested-folder" />
+        <var instance="ws" name="deployment_path_nested" value="/root/work/nested_folder" />
+        <var instance="!ws" name="local_project_folder" value="/demo-project" />
+        <var instance="ws" name="local_project_folder" value="/deployment_demo" />
+        <var instance="!ws" name="deployment_path" value="/root-path/my-site" />
+        <var instance="ws" name="deployment_path" value="/root/work/my_site" />
+        In this case, <code>%local_path_nested%</code> will
+        be uploaded to <code>%deployment_path_nested%</code> on the server, while all other
+        folders and files from <code>%local_project_folder%</code> will still map to
+        <code>%deployment_path%</code>.
+    </p>
+
+    <list>
+        <var instance="!ws" name="local_path" value="Users/John.Smith/demo-project" />
+        <var instance="ws" name="local_path" value="/Users/barbara/WS/deployment_demo" />
+        <var instance="!ws" name="deployment_path" value="/my-project" />
+        <var instance="ws" name="deployment_path" value="my_project" />
+        <var instance="!ws" name="web_path" value="/my-project" />
+        <var instance="ws" name="web_path" value="my_project" />
+        <li><control>Local path</control>:<code>%local_path%</code></li>
+        <li><control>Deployment path</control>: <code>%deployment_path%&gt;</code></li>
+        <li><control>Web path</control>: <code>%web_path%</code></li>
+        <li><code>%M</code> &mdash; message of the initial commit</li>
+        <li><code>%C</code> &mdash; change ID in TeamCity</li>
+        <li><code>%L</code> &mdash; link to the change in TeamCity</li>
+        <li>
+            <p> <code>%\w+</code> -
+                <code>%</code> followed by one or more word characters,
+                for example, <code>%xyz</code>.</p>
+            <p instance="ps">To have %instance% recognize <a href="http://php.net/manual/en/function.sprintf.php">sprintf</a> format references in injected SQL strings:
+            </p>
+            <list type="decimal" instance="ps">
+                <include from="lib_php.topic" element-id="ps_sprintf_pattern" />
+            </list>
+        </li>
+        <li><code>%template%</code></li>
+
+    </list>
+
+    <list>
+        <li><code>%M</code> &mdash; message of the initial commit</li>
+        <li><code>%C</code> &mdash; change ID in TeamCity</li>
+        <li><code>%L</code> &mdash; link to the change in TeamCity</li>
+    </list>
+
+    <tldr>
+        <p>
+            To use a live template, type the corresponding template abbreviation.
+        </p>
+    </tldr>
+    <p>
+        %product% already has a bunch of built-in live templates for frequently used markup fragments,
+        like tabs, tables, lists, procedures, and more. They made you write some more complex markup fragments quicker.
+        They work in both <path>.md</path> and <path>.topic</path> files.
+    </p>
+
+    ttEST 12132576489-=P\D'LSKJFHjsa'l;j;fldkjh avlkjh mmnx/>|?mxv.,mzcnc:JMK Djh acLKxjz hlkjh cvmnb
+
+    <chapter title="Test" id="test">
+        <primary-label ref="label"/>
+        <secondary-label ref="annotation"/>
+
+        <a href="Text-index.topic"/>
+
+        帶來了熊
+
+        %product%
+
+        <code>%product%</code>
+
+        <code-block>
+            %product%
+        </code-block>
+
+
+        <img src="https://img.shields.io/badge/jetbrains%20plugin-v1.7-blue" alt="Version"/>
+
+        <img src="https://i0.wp.com/hechingerreport.org/wp-content/uploads/2018/04/Jennifer-Heller-Buckley-PHOTO1.jpg"
+             alt="Version"/>
+
+
+        <img src="love%20couple%20dark.gif" alt="love couple dark.gif" ignore-vars="true"/>
+
+        <img src="love couple dark.gif" alt="love couple dark.gif"/>
+
+
+        <p>
+        <a href="https://docs.openrewrite.org/">OpenRewrite</a> is a tool.
+    </p>
+    </chapter>
+</topic>
