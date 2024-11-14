@@ -64,16 +64,12 @@ jobs:
           path: timestamps
 
       - name: Build Writerside docs using Docker
-        run: |
-          set -x
-          echo "Build documentation script started"
-          export DISPLAY=:99
-          Xvfb :99 &
-          git config --global --add safe.directory .
-                           /opt/builder/bin/idea.sh helpbuilderinspect -source-dir . -product ${{ env.INSTANCE }} --runner github -output-dir ./artifacts -pdf PDF.xml
-          echo "Test existing artifacts"
-                          test -e ./artifacts/${{ env.ARTIFACT }} && echo ${{ env.ARTIFACT }} exists
-               test -e ./artifacts/pdfSourceAUTO.pdf && echo pdfSourceAUTO.pdf exists
+        uses: JetBrains/writerside-github-action@v4
+        with:
+          instance: ${{ env.INSTANCE }}
+          artifact: ${{ env.ARTIFACT }}
+          docker-version: ${{ env.DOCKER_VERSION }}
+          pdf: ${{ env.PDF }}
 
       - name: List artifacts directory
         run: |
