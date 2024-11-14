@@ -29,7 +29,7 @@ env:
   CONFIG_JSON_PRODUCT: api
   CONFIG_JSON_VERSION: 1.0
   ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
-  PDF: 'pdf.xml'
+  PDF: pdf.xml
 
 jobs:
   build-pdf:
