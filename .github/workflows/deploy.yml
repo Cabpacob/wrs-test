@@ -4,7 +4,7 @@ on:
   # If specified, the workflow will be triggered automatically once you push to the `main` branch.
   # Replace `main` with your branch’s name
   push:
-    branches: ["wrs-6479"]
+    branches: ["wrs-6473"]
   # Specify to run a workflow manually from the Actions tab on GitHub
   workflow_dispatch:
 
@@ -29,16 +29,23 @@ env:
   CONFIG_JSON_PRODUCT: api
   CONFIG_JSON_VERSION: 1.0
   ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+  PDF: 'pdf.xml'
 
 jobs:
-  build:
+  build-pdf:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Define instance ID
+        run: |
+          INSTANCE_ID="${INSTANCE#*/}"
+          INSTANCE_ID_UPPER=$(echo "$INSTANCE_ID" | tr '[:lower:]' '[:upper:]')
+          echo "INSTANCE_ID_UPPER=$INSTANCE_ID_UPPER" >> $GITHUB_ENV
+          echo "Extracted ID: $INSTANCE_ID_UPPER"
 
       - name: Build Writerside docs using Docker
         uses: JetBrains/writerside-github-action@v4
@@ -46,95 +53,13 @@ jobs:
           instance: ${{ env.INSTANCE }}
           artifact: ${{ env.ARTIFACT }}
           docker-version: ${{ env.DOCKER_VERSION }}
-
-      - name: Upload documentation
-        uses: actions/upload-artifact@v4
-        with:
-          name: docs
-          path: |
-            artifacts/${{ env.ARTIFACT }}
-            artifacts/report.json
-          retention-days: 7
-
-      # Add the step below to upload Algolia indexes
-      - name: Upload algolia-indexes
-        uses: actions/upload-artifact@v4
-        with:
-          name: algolia-indexes
-          path: artifacts/${{ env.ALGOLIA_ARTIFACT }}
-          retention-days: 7
-
-  # Add the job below and artifacts/report.json on Upload documentation step above if you want to fail the build when documentation contains errors
-  test:
-    # Requires build job results
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Download artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: docs
-          path: artifacts
-
-      - name: Test documentation
-        uses: JetBrains/writerside-checker-action@v1
-        with:
-          instance: ${{ env.INSTANCE }}
-
-  publish-indexes:
-    # Requires the build-job results
-    needs: build
-    runs-on: ubuntu-latest
-    container:
-      image: registry.jetbrains.team/p/writerside/builder/algolia-publisher:2.0.32-3
-
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - uses: actions/download-artifact@v4
-        with:
-          name: algolia-indexes
-      - uses: montudor/action-zip@v1
-        with:
-          args: unzip -qq ${{ env.ALGOLIA_ARTIFACT }} -d algolia-indexes
-      - run: |
-          env "algolia-key=${{env.ALGOLIA_KEY}}" java -jar /opt/builder/help-publication-agent.jar \
-          update-index \
-          --application-name ${{env.ALGOLIA_APP_NAME}} \
-          --index-name ${{env.ALGOLIA_INDEX_NAME}} \
-          --product ${{env.CONFIG_JSON_PRODUCT}} \
-          --version "${{env.CONFIG_JSON_VERSION}}" \
-          --index-directory algolia-indexes/ \
-          2>&1 | tee algolia-update-index-log.txt
-
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    # Requires the build job results
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: docs
-
-      - name: Unzip artifact
-        uses: montudor/action-zip@v1
-        with:
-          args: unzip -qq ${{ env.ARTIFACT }} -d dir
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v2
+          pdf: ${{ env.PDF }}
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-artifact@v4
         with:
-          path: dir
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+          name: artifact
+          path: |
+            artifacts/pdfSource${{ env.INSTANCE_ID_UPPER }}.pdf
+            artifacts/pdfSource${{ env.INSTANCE_ID_UPPER }}.html
+          retention-days: 7
