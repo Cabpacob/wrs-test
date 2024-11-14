@@ -19,7 +19,7 @@ env:
   # Replace HI with the ID of the instance in capital letters
   ARTIFACT: webHelpAPI2-all.zip
   # Writerside docker image version
-  DOCKER_VERSION: '241.18775'
+  DOCKER_VERSION: '243.21565'
   # Add the variable below to upload Algolia indexes
   # Replace HI with the ID of the instance in capital letters
   ALGOLIA_ARTIFACT: algolia-indexes-API.zip
@@ -53,7 +53,7 @@ jobs:
           instance: ${{ env.INSTANCE }}
           artifact: ${{ env.ARTIFACT }}
           docker-version: ${{ env.DOCKER_VERSION }}
-          PDF: ${{ env.PDF }}
+          pdf: ${{ env.PDF }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
