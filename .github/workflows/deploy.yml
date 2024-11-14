@@ -41,27 +41,27 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Processing timestamps
-        run: |
-          git config --global --add safe.directory /__w/siarb.github.io/siarb.github.io
-          mkdir -p ./timestamps
-          echo "{" > ./timestamps/timestamps.json
-          git ls-tree -r --name-only HEAD | grep -E '\.(topic|md)$' | xargs -n 1 -P 4 -I{} bash -c 'echo -e "\"$0\": \"$(git log -1 --format="%at" -- "$0")\","' {} >> ./timestamps/timestamps.json
-          sed -i '$ s/.$//' ./timestamps/timestamps.json
-          echo "}" >> ./timestamps/timestamps.json
-          cat ./timestamps/timestamps.json
+#      - name: Processing timestamps
+#        run: |
+#          git config --global --add safe.directory /__w/siarb.github.io/siarb.github.io
+#          mkdir -p ./timestamps
+#          echo "{" > ./timestamps/timestamps.json
+#          git ls-tree -r --name-only HEAD | grep -E '\.(topic|md)$' | xargs -n 1 -P 4 -I{} bash -c 'echo -e "\"$0\": \"$(git log -1 --format="%at" -- "$0")\","' {} >> ./timestamps/timestamps.json
+#          sed -i '$ s/.$//' ./timestamps/timestamps.json
+#          echo "}" >> ./timestamps/timestamps.json
+#          cat ./timestamps/timestamps.json
 
-      - name: Store timestamps file
-        uses: actions/upload-artifact@v4
-        with:
-          name: timestamps.json
-          path: ./timestamps/timestamps.json
-
-      - name: Download timestamps
-        uses: actions/download-artifact@v4
-        with:
-          name: timestamps.json
-          path: timestamps
+#      - name: Store timestamps file
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: timestamps.json
+#          path: ./timestamps/timestamps.json
+#
+#      - name: Download timestamps
+#        uses: actions/download-artifact@v4
+#        with:
+#          name: timestamps.json
+#          path: timestamps
 
       - name: Build Writerside docs using Docker
         uses: JetBrains/writerside-github-action@v4
@@ -186,66 +186,66 @@ jobs:
         with:
           instance: 'Writerside2/t'
 
-  publish-indexes:
-    # Requires the build-job results
-    needs: build-site1
-    runs-on: ubuntu-latest
-    container:
-      image: registry.jetbrains.team/p/writerside/builder/algolia-publisher:2.0.32-3
+#  publish-indexes:
+#    # Requires the build-job results
+#    needs: build-site1
+#    runs-on: ubuntu-latest
+#    container:
+#      image: registry.jetbrains.team/p/writerside/builder/algolia-publisher:2.0.32-3
+#
+#    steps:
+#      - name: Download artifact
+#        uses: actions/download-artifact@v4
+#        with:
+#          name: docs-site1
+#
+#      - name: Unzip artifact
+#        run: |
+#          unzip -O UTF-8 -qq ${{ env.ALGOLIA_ARTIFACT }} -d algolia-indexes
+#          env "algolia-key=${{env.ALGOLIA_KEY}}" java -jar /opt/builder/help-publication-agent.jar \
+#          update-index \
+#          --application-name ${{env.ALGOLIA_APP_NAME}} \
+#          --index-name ${{env.ALGOLIA_INDEX_NAME}} \
+#          --product ${{env.CONFIG_JSON_PRODUCT}} \
+#          --version ${{env.CONFIG_JSON_VERSION}} \
+#          --index-directory algolia-indexes
 
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: docs-site1
-
-      - name: Unzip artifact
-        run: |
-          unzip -O UTF-8 -qq ${{ env.ALGOLIA_ARTIFACT }} -d algolia-indexes
-          env "algolia-key=${{env.ALGOLIA_KEY}}" java -jar /opt/builder/help-publication-agent.jar \
-          update-index \
-          --application-name ${{env.ALGOLIA_APP_NAME}} \
-          --index-name ${{env.ALGOLIA_INDEX_NAME}} \
-          --product ${{env.CONFIG_JSON_PRODUCT}} \
-          --version ${{env.CONFIG_JSON_VERSION}} \
-          --index-directory algolia-indexes
-
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    # Requires the build job results
-    needs: build-site1
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: docs-site1
-
-      - name: Download Not-Yet artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: docs-site2
-
-      - name: Unzip artifact
-        run: |
-          mkdir -p dir/site1
-          unzip -O UTF-8 -qq ${{ env.ARTIFACT }} -d dir/site1
-
-      - name: Unzip Not-Yet artifact
-        run: |
-          mkdir -p dir/site2
-          unzip -O UTF-8 -qq 'webHelpT2-all.zip' -d dir/site2
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v4.0.0
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3.0.1
-        with:
-          path: dir
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+#  deploy:
+#    environment:
+#      name: github-pages
+#      url: ${{ steps.deployment.outputs.page_url }}
+#    # Requires the build job results
+#    needs: build-site1
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Download artifact
+#        uses: actions/download-artifact@v4
+#        with:
+#          name: docs-site1
+#
+#      - name: Download Not-Yet artifacts
+#        uses: actions/download-artifact@v4
+#        with:
+#          name: docs-site2
+#
+#      - name: Unzip artifact
+#        run: |
+#          mkdir -p dir/site1
+#          unzip -O UTF-8 -qq ${{ env.ARTIFACT }} -d dir/site1
+#
+#      - name: Unzip Not-Yet artifact
+#        run: |
+#          mkdir -p dir/site2
+#          unzip -O UTF-8 -qq 'webHelpT2-all.zip' -d dir/site2
+#
+#      - name: Setup Pages
+#        uses: actions/configure-pages@v4.0.0
+#
+#      - name: Upload artifact
+#        uses: actions/upload-pages-artifact@v3.0.1
+#        with:
+#          path: dir
+#
+#      - name: Deploy to GitHub Pages
+#        id: deployment
+#        uses: actions/deploy-pages@v4
